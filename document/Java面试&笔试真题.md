@@ -38,3 +38,11 @@
            否则当前第i次所打的靶数已经不可能满足打中90环以上, 就没必要再进行计算;
         ```
     * 代码: JavaSample/src/main/java/com.example.javasample.MiGuTester
+
+* 约瑟夫环实现:
+
+    * 思路:
+        ```
+        链式结构, 移除时修改内存地址指向即可
+        ```
+     * 代码: JavaSample/JosephTester
