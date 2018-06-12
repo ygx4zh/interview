@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Sample</string>
+    <string name="dialog_sample">dialog_sample</string>
+</resources>
