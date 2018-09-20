@@ -77,7 +77,53 @@ public class MinHeapWrapper<T> implements IHeap<T> {
 
     @Override
     public void sort() {
+        // 思想
+        // 将构建好的二叉堆index=0的元素(这位通常都是最值)与最后一位元素交换
+        if (mHeapArray.size() < 1) return;
 
+
+        int index = mHeapArray.size() - 1;
+
+        while (index > 0) {
+            T first = mHeapArray.get(0);
+            T tmp = mHeapArray.get(index);
+
+            mHeapArray.set(index, first);
+            mHeapArray.set(0, tmp);
+
+            int parentIndex = 0;
+            while (parentIndex < index) {
+                int left, right;
+                left = parentIndex * 2 + 1;
+                right = parentIndex * 2 + 2;
+
+                // System.out.println(parentIndex + " ~ " + left + " ~ " + right);
+
+                if (left >= index && right >= index) break;
+
+                if (right >= index) {
+                    // 最小堆, 大的往下沉
+                    int min = ObjectUtils.min(parentIndex, left, mHeapArray, cmptor);
+                    // 当前最小元素为子节点元素
+                    if (min == left) {
+                        ObjectUtils.swap(left, parentIndex, mHeapArray);
+                    }
+                    break;
+                } else {
+                    int minChild = ObjectUtils.min(left, right, mHeapArray, cmptor);
+                    int min = ObjectUtils.min(minChild, parentIndex, mHeapArray, cmptor);
+                    // 当前最小元素为子节点元素
+                    if (min == minChild) {
+                        ObjectUtils.swap(minChild, parentIndex, mHeapArray);
+                        parentIndex = minChild;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            index--;
+        }
     }
 
     @Override

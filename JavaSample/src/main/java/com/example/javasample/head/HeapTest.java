@@ -44,5 +44,9 @@ public class HeapTest {
         9 10
          */
         System.out.println(s3);
+
+        System.out.println("--------------------");
+        heap.sort();
+        System.out.println(heap.toHeapString());
     }
 }
